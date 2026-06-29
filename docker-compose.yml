@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  al-nassr-monitor:
+    build: .
+    container_name: al-nassr-news-monitor
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - DATABASE_URL=sqlite:///./data/al_nassr_news.db
+      - SMTP_HOST=${SMTP_HOST:-smtp.gmail.com}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_FROM=${SMTP_FROM}
+      - EMAIL_RECIPIENT=${EMAIL_RECIPIENT}
+      - EMAIL_RECIPIENT_NAME=${EMAIL_RECIPIENT_NAME:-مراقب الأخبار}
+      - SEND_NO_NEWS_EMAIL=${SEND_NO_NEWS_EMAIL:-true}
+      - AI_PROVIDER=${AI_PROVIDER:-openai}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-3.5-turbo}
+      - MINIMUM_RELEVANCE_THRESHOLD=${MINIMUM_RELEVANCE_THRESHOLD:-7}
+      - TIMEZONE=Asia/Riyadh
+      - CHECK_INTERVAL_MINUTES=${CHECK_INTERVAL_MINUTES:-5}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - WEB_HOST=0.0.0.0
+      - WEB_PORT=8000
+      - DASHBOARD_USERNAME=${DASHBOARD_USERNAME:-admin}
+      - DASHBOARD_PASSWORD=${DASHBOARD_PASSWORD:-change-me}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

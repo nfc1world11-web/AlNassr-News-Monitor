@@ -1,0 +1,56 @@
+sources:
+  - name: "Google News - النصر السعودي"
+    type: "google_news_rss"
+    enabled: true
+    priority: 10
+    languages:
+      - ar
+      - en
+
+  - name: "Sport360 - الأخبار الرياضية"
+    type: "rss"
+    enabled: true
+    url: "https://sport360.com/ar/rss"
+    priority: 9
+
+  - name: "Kooora - أخبار الكرة"
+    type: "rss"
+    enabled: true
+    url: "https://www.kooora.com/rss"
+    priority: 8
+
+  - name: "ESPN - الأخبار العالمية"
+    type: "rss"
+    enabled: true
+    url: "https://www.espn.com/espn/rss"
+    priority: 7
+
+keywords:
+  arabic:
+    - "النصر"
+    - "نادي النصر"
+    - "النصر السعودي"
+    - "فريق النصر"
+    - "النصر الرياض"
+    - "كريستيانو رونالدو"
+    - "ساديو ماني"
+    - "تاليسكا"
+
+  english:
+    - "Al Nassr"
+    - "Al-Nassr"
+    - "Cristiano Ronaldo"
+    - "Sadio Mane"
+    - "Talisca"
+    - "Saudi Arabia"
+    - "Saudi Pro League"
+
+exclusions:
+  - "نصر أخرى"
+  - "إيطاليا"
+  - "رونالد" # تجنب أسماء مشابهة
+  - "ماني أخرى"
+
+schedule:
+  interval_minutes: 5
+  max_concurrent_sources: 5
