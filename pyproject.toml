@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "al-nassr-news-monitor"
+version = "1.0.0"
+description = "Automated news monitoring system for Al Nassr Saudi Football Club"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["al-nassr", "news", "monitor", "football", "saudi"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.build"
